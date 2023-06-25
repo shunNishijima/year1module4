@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Head-->
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Puzzle Page</title>
+    <link rel="stylesheet" href="styleQuiz.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+</head>
+<body onload="loadPuzzles()">
+    <!--the head navigation-->
+    <section id="websiteBar">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="adminHome.html"><img src="inter-actief-logo-onder-wit.png"></a>
+                <h1 class="header-title"> RIAlly 2023</h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="ms-auto"></div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link"  href="adminHome.html" >HOME</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="highlightText" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                PLAY
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="adminCrazy.html">Crazy 88</a>
+                                <li><a class="dropdown-item" href="adminChallenge.html">Challenges</a>
+                                <li><a class="dropdown-item text-darkblue" href="adminPuzzle.html">Puzzles</a>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminTeam.html">TEAM</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                SUBMISSION
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item"  href="ungradedSubmissions.html">Ungraded Submission</a>
+                                <li><a class="dropdown-item" href="gradedSubmissions.html">Graded Submission</a>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminScoreboard.html">SCOREBOARD</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+<!--main-->
+<main>
+    <div class="container">
+        <!-- Background image z=1 -->
+        <div class="bg-image d-flex justify-content-center align-items-center"
+             style="
+                    background-image: url('inter-actief-logo-onder.png');
+                    height: 100vh;
+                    background-repeat: no-repeat;
+                    background-size: 86%;
+                    background-position-x: 100px;
+                    background-position-y: -60px;
+                    filter: opacity(5%);
+                    z-index: 1;
+                    position: relative;
+                    ">
+        </div>
+
+        <!--Whole contents z=2-->
+        <div class="banner-container"
+             style="position: absolute;
+                      top: 0;
+                      left: 0;
+                      right: 0;
+                      bottom: 0;
+                      z-index: 2;">
+            <!-------------BANNER SECTION-------------->
+            <section id="banner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="title-promo">Admin Puzzles Page</p>
+                            <p>Here, You can see the list of Crazy88 which is made before.
+                                You can freely edit and delete of them.
+                                And surely you can add more crazy things.
+                            <h3>All Puzzles: This is the list of Puzzles</h3>
+                            <table class="table table-primary table-hover" id="puzzleTable">
+                                <tr>
+                                    <th>Number</th>
+                                    <th>Description</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <tr>
+                                    <td>ID: 1 </td>
+                                    <td><a href="/somePDF">details</a></td>
+                                    <td><button type="button" class="btn btn-info" onclick="editPuzzle(1)">Edit</button></td>
+                                    <td><button type="button" class="btn btn-danger" onclick=deletePuzzle(this)>Delete</button></td>
+                                </tr>
+                            </table>
+                            <a href="adminAddPuzzle.html" type="button" class="btn btn-outline-primary" data-mdb-ripple-color="dark">add new Puzzle</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-dialog-centered">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel1">IMAGE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 ml-auto">
+                                <div id="filePlace">
+                                    <!--                           <img src="car.jpg" width="400">-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel2">DELETE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="deleteConfirm" style="display: none">
+                        <p id="warning"></p>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-primary" data-mdb-ripple-color="dark" data-bs-dismiss="modal" onclick="deleteChallengeRequest(deletedRow)">YES</button>
+                    <button class="btn btn btn-outline-secondary" data-mdb-ripple-color="dark" data-bs-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-dialog-centered">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel3">EDIT</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 ml-auto">
+                                <div id="editField">
+                                    <p style="display: flex; flex-direction: column">Puzzle name: <input type="text" name="name" id="name"></p>
+                                    <p style="display: flex; flex-direction: column">SCORE: <input type="text" id="score"></p>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-info btn-rounded" data-bs-dismiss="modal" onclick="submitEdit(editedRow)">EDIT</button>
+                                <button class="btn btn btn-outline-secondary" data-mdb-ripple-color="dark" data-bs-dismiss="modal">CANCEL</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-------------FOOTER SECTION-------------->
+<footer class="bg-light text-center text-lg-start" style="color: white;">
+    <div class="logoutbutton">
+        <div class="text-center p-3" style="background-image: linear-gradient(to right, darkblue, mediumblue);">
+            Inter-Actief: RIAlly 2023
+            <button  class="logoutbutton2"> <a href="..//index.html">  LOG OUT </a> </button>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+<script>
+    let name;
+    let file;
+    let created_by;
+    let score;
+    let challenge_id;
+
+
+
+    function deletePuzzle(id) {
+        // Handle delete functionality here
+        console.log('Delete puzzle with ID:', id);
+        // Perform necessary logic such as confirmation prompt or API call
+
+        // Find the row associated with the given puzzle ID and remove it from the table
+        var table = document.getElementById('puzzleTable');
+        var rows = table.getElementsByTagName('tr');
+        if (confirm("Are you sure you want to delete this puzzle?")) {
+            for (var i = 1; i < rows.length; i++) {
+                var row = rows[i];
+                var rowId = row.getElementsByTagName('td')[0].innerText;
+
+                if (rowId === id) {
+                    table.deleteRow(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    function editPuzzle(button){
+        let row = button.parentNode.parentNode;
+        editedRow = row;
+        let formArea = document.getElementById("editField");
+        formArea.style.display = "";
+        let id = row.cells[0].innerText;
+        let url = "http://localhost:8080/InterActiefProject/api/challenges/" + id;
+        fetch(url).then(result => result.json()).then(asd => {
+            name = asd.name;
+            file = asd.file;
+            created_by = asd.created_by;
+            score = asd.score;
+            challenge_id = asd.challenge_id;
+        })
+        document.getElementById("name").value = row.cells[1].innerText;
+        document.getElementById("score").value = row.cells[2].innerHTML;
+    }
+
+    function submitEdit(row){
+        row.cells[1].innerHTML = document.getElementById("name").value;
+        row.cells[2].innerHTML = document.getElementById("score").value;
+        let jsonData = '{' +
+            '"name": "' + document.getElementById("name").value + '", ' +
+            '"file": "' + file + '", ' +
+            '"created_by": "' + created_by + '", ' +
+            '"score": "' + document.getElementById("score").value + '", ' +
+            '"challenge_id": "' + challenge_id + '"' +
+            '}';
+        let url = "http://localhost:8080/InterActiefProject/api/challenges/" + challenge_id;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: jsonData,
+        }).then(function (response){
+            if (response.ok){
+                row.cells[1].innerHTML = document.getElementById("name").value;
+                row.cells[2].innerHTML = document.getElementById("score").value;
+                document.getElementById("editField").style.display = 'none';
+            }
+
+        })
+    }
+    /*
+    function editPuzzle(id) {
+        // Handle edit functionality here
+        console.log('Edit puzzle with ID:', id);
+        // Redirect to the adminAddPuzzle.html page or perform necessary logic
+        window.location.href = 'adminAddPuzzle.html?id=' + id; // Redirect to the edit page with puzzle ID
+    }
+
+     */
+
+    function openFile(path){
+        fetch("http://localhost:8080/InterActiefProject/api/challenges/file",{
+            method: "put",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: path
+        }).then(res => res.blob())
+            .then(data => {
+                let dataPath = URL.createObjectURL(data);
+                let filePlace = document.getElementById("filePlace");
+                filePlace.innerHTML = "<img src='" + dataPath + "' width='400'>"
+            })
+    }
+
+    function loadPuzzles(){
+        fetch("http://localhost:8080/InterActiefProject/api/puzzles").then(result => result.json()).then(challenges => {
+
+
+            let tableContent =
+                "<thead><tr>" +
+                "<th>ID</th>" +
+                "<th>NAME</th>" +
+                "<th>SCORE</th>" +
+                "<th>FILE</th>" +
+                "<th>EDIT</th>" +
+                "<th>DELETE</th>" +
+                "</tr></thead>";
+            for (const challenge of challenges){
+                tableContent +=
+                    "<tbody><tr>" +
+                    "<td>" + challenge.challenge_id + "</td>" +
+                    "<td>" +challenge.name + "</td>" +
+                    "<td>" + challenge.score + "</td>" +
+                    "<td>" +
+                    "<button type=\"button\" class=\"btn btn-success\" data-bs-toggle=\"modal\" data-bs-target=\"#staticBackdrop1\" onclick='openFile(\""+ challenge.file + "\")''>open</button>" +
+                    "</td>" +
+                    "<td><button type=\"button\" class=\"btn btn-info\" data-bs-toggle=\"modal\" data-bs-target=\"#staticBackdrop3\" onclick='editChallenge(this)'>EDIT</button></td>" +
+                    "<td><button type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#staticBackdrop2\" onclick=\"removeButton(this)\">DELETE</button></td>" +
+                    "</tr></tbody>"
+            }
+            document.getElementById("puzzleTable").innerHTML = tableContent;
+        })
+
+    }
+
+</script>

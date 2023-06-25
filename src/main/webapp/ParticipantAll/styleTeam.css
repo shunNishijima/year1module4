@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Dosis', sans-serif;
+}
+
+#websiteBar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    padding: 0 !important;
+}
+
+.navbar-brand img{
+    height: 60px;
+    padding-left: 10px;
+}
+
+.navbar-nav li{
+    padding: 0 10px;
+
+}
+
+.navbar-nav li a{
+    color: white !important;
+    font-weight: normal;
+
+}
+
+#highlightText{
+    color: deepskyblue !important;
+}
+
+.navbar-toggler{
+    outline: none !important;
+}
+
+.header-title{
+    color: white;
+    font-family: Tahoma, sans-serif;
+    font-size: 35px;
+}
+
+
+/*--------TITLE------------*/
+
+.title{
+    text-align: center;
+    padding-top: 50px;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+
+}
+
+
+/*--------------DROPDOWN MENU--------*/
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+.dropdown-menu a[href="partCrazy88.html"]{
+    color: darkblue !important;
+}
+
+.dropdown-menu a[href="partChallenge.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="partPuzzle.html"]{
+    color: darkblue !important;
+}
+
+
+.body {
+    width: 100%;
+    text-align: center;
+}
+
+.logo2 #highlight {
+    color: deepskyblue;
+}
+
+table {
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+    border-collapse: collapse;
+}
+
+
+.top{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+tr:hover {
+    background-color: lightgrey;
+}
+
+
+/*-------------FOOTER PART-----------------*/
+
+#footer{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+
+
+}
+
+.logoutbutton2 {
+    background-color: darkblue;
+    border-color: white;
+    border-radius: 15px;
+    float: right;
+
+
+}
+.logoutbutton2 a{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+#joinlink{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 365px;
+}
+
+#textbelow{
+    margin-top: 24px;
+    font-weight: bold;
+}
+
+#link{
+    color: deepskyblue;
+}

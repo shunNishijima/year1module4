@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Dosis', sans-serif;
+}
+
+#websiteBar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    padding: 0 !important;
+}
+
+.navbar-brand img{
+    height: 60px;
+    padding-left: 10px;
+}
+
+.navbar-nav li{
+    padding: 0 10px;
+
+}
+
+.navbar-nav li a{
+    color: white !important;
+    font-weight: normal;
+
+}
+
+#highlightText{
+    color: deepskyblue !important;
+}
+
+.navbar-toggler{
+    outline: none !important;
+}
+
+.header-title{
+    color: white;
+    font-family: Tahoma, sans-serif;
+    font-size: 35px;
+}
+
+/*---------TITLE-----------*/
+
+.title{
+    text-align: center;
+    padding-top: 50px;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+
+}
+
+
+
+/*--------------DROPDOWN MENU--------*/
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+.dropdown-menu a[href="partCrazy88.html"]{
+    color: darkblue !important;
+}
+
+.dropdown-menu a[href="partChallenge.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="partPuzzle.html"]{
+    color: darkblue !important;
+}
+/*--------SOCIAL MEDIA PART-------*/
+
+#social-media{
+    background: #f8f9fa;
+    padding: 100px 0;
+}
+
+#social-media p{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.socialM-icons img{
+    width: 65px;
+    transition: 0.5s;
+    padding-left: 10px;
+}
+.socialM-icons a:hover img{
+    transform: translateY(-10px);
+}
+
+
+/*-------------FOOTER PART-----------------*/
+
+#footer{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+
+}
+
+.logoutbutton2 {
+    background-color: darkblue;
+    border-color: white;
+    border-radius: 15px;
+    float: right;
+
+
+}
+.logoutbutton2 a{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+
+
+
+#buttonInterActief {
+    margin-left: 46%;
+    margin-right: 45%;
+
+}
+p{
+    width: 100%;
+    text-align: center;
+}
+

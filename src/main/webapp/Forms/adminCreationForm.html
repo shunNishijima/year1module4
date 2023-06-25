@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CreateTeamForm</title>
+  <link rel="stylesheet" href="styleForm.css">
+  <script src="http://localhost:8080/InterActiefProject/adminCreation.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="form-box login">
+    <h2>Admin join form</h2>
+    <form action="#">
+      <div class="input-box">
+        <span class="icon">
+          <img src="https://cdn.onlinewebfonts.com/svg/img_326500.png"
+               alt="name icon"
+               width="20">
+        </span>
+        <input id="name" required>
+        <label>Name</label>
+      </div>
+      <div class="input-box">
+        <span class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/61/61457.png"
+               alt="lock icon"
+               width="20">
+        </span>
+        <input id="password" type="password" required>
+        <label>Password</label>
+      </div>
+      <div class="input-box">
+        <span class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/61/61457.png"
+               alt="lock icon"
+               width="20">
+        </span>
+        <input id="passwordConfirm" type="password" required>
+        <label>Password again</label>
+      </div>
+      <div class="input-box">
+        <span class="icon">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/009/614/original/email-and-mail-icon-black-free-png.png"
+               alt="email icon"
+               width="24"
+          >
+        </span>
+        <input id="email" type="email" required>
+        <label>Email address</label>
+      </div>
+      <div class="input-box">
+        <span class="icon">
+          <img src="https://cdn.icon-icons.com/icons2/37/PNG/512/phone_4307.png"
+               alt="phone icon"
+               width="20"
+          >
+        </span>
+        <input id="phone" required>
+        <label>Phone number</label>
+      </div>
+      <div class="popup" >
+        <p id="errorMessage"></p>
+        <button onclick="createTeam()" type="button" class="btn">Create admin account</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+
+</html>

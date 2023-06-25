@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>newHome</title>
+  <link rel="stylesheet" href="indexstyle.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+</head>
+
+<script>
+
+  function checkUsernamePassword(email, password){
+    return fetch("http://localhost:8080/InterActiefProject/api/people/" + email).then(response =>
+    {
+      if (response.status === 204) {
+        return "nothing";
+      }
+      return response.json()
+    }).then(result => {
+      if (result.password === password) {
+        if (!result.is_participant) {
+          return "admin";
+        } else {
+          return "user"
+        }
+      } else {
+        return "nothing"
+      }
+    }).catch(console.error);
+  }
+
+  function login(){
+    document.getElementById("errorMessage").innerText = "";
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    checkUsernamePassword(email, password).then(result => {
+        if(result === "admin") {
+          setSessionStorage();
+          window.location.href = "/InterActiefProject/AdminAll/adminHome.html";
+        }
+        else if (result === "user"){
+          setSessionStorage();
+          window.location.href = "/InterActiefProject/ParticipantAll/homescreenforParticipants.html";
+        }
+        else {
+          document.getElementById("errorMessage").innerText = "wrong email or password";
+        }
+    });
+  }
+
+  function setSessionStorage(){
+    sessionStorage.setItem("sessionKey", "" + Math.floor(Math.random() * 1000000000));
+    fetch("http://localhost:8080/InterActiefProject/api/people/" + document.getElementById("email").value + "/" + sessionStorage.getItem("sessionKey"), {
+      method: "POST",
+      headers: {
+        "accept": "application/json",
+        "Content-Type": "application/json",
+      }}).catch(console.log("error"));
+  }
+
+</script>
+
+
+<body>
+
+  <!-- Add your site or application content here -->
+
+
+  <section class="h-100 gradient-form" style="background-color: ghostwhite;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+
+                  <div class="text-center">
+                    <img src="inter-actief-logo-onder.png"
+                         style="width: 185px;" alt="logo">
+                    <h4 class="mt-1 mb-5 pb-1">RIAlly 2023</h4>
+                  </div>
+
+                  <form>
+                    <p>Please login to your account</p>
+
+                    <div class="form-outline mb-4">
+                      <input type="email" id="email" class="form-control"
+                             placeholder="email-address" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="password" id="password" class="form-control"
+                      placeholder="Password"/>
+
+                    </div>
+
+
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <p id="errorMessage"></p>
+                      <button class="btn btn-primary btn-block gradient-custom-2 mb-3" type="button" onclick="login()">Log
+                        in</button>
+
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">Don't have a team yet?</p>
+                      <button type="button" class="btn btn-outline-primary" onclick="location.href='./Forms/CreateTeamForm.html'" > Create new team </button>
+                    </div>
+
+                  </form>
+
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <h1 class="mb-4"> Welcome to <br><em><b>Rially 2023</b></em></h1>
+                  <p class="small mb-0">For those who are unfamiliar with the Rially. It is a puzzle hunt in the area of Twente.
+                    We will start on campus, where you will get your first set of three puzzles for the first location. The first puzzle will tell you which direction to go in, the second puzzle will tell you the city and the last puzzle will tell you the exact location.
+                    You're going to drive with a few of your friends to the location, where you will get the next set of puzzles for the following location.
+                    During your trip, you can also send in tasks, for which you can get points. All in all, it is a fun road trip with a few of your friends</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

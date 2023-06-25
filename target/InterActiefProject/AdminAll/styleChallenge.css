@@ -1,0 +1,103 @@
+/*EVERYTHING*/
+*{
+    margin: 0;
+    padding: 0;
+}
+/*--Head--*/
+/*-BANNER PART-*/
+#websiteBar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    padding: 0 !important;
+}
+.navbar-brand img{
+    height: 60px;
+    padding-left: 10px;
+}
+.navbar-nav li{
+    padding: 0 10px;
+}
+.navbar-nav li a{
+    color: white !important;
+    font-weight: normal;
+}
+#highlightText{
+    color: deepskyblue !important;
+}
+.navbar-toggler{
+    outline: none !important;
+}
+.header-title{
+    color: white;
+}
+
+/*DROPDOWN MENU*/
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+.dropdown-menu a[href="adminCrazy.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="adminChallenge.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="adminPuzzle.html"]{
+    color: darkblue !important;
+}
+
+
+/*DROPDOWN MENU SUBMISSION*/
+.dropdown-menu a[href="ungradedSubmissions.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="gradedSubmissions.html"]{
+    color: darkblue !important;
+}
+
+
+
+/*--Head--*/
+
+/*--BODY--*/
+body{
+    font-family: 'Dosis', sans-serif;
+}
+.title-promo{
+    font-size: 40px;
+    font-weight: 500;
+    margin-top: 200px;
+}
+.title-content{
+    margin-bottom: 50px;
+}
+#challengesTable{
+    width: 80vw;
+}
+#editField{
+    margin-left: 10%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/*--FOOTER--*/
+#footer{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    z-index: 2;
+    width: 100vw;
+}
+.logoutbutton2 {
+    background-color: darkblue;
+    border-color: white;
+    border-radius: 15px;
+    float: right;
+}
+.logoutbutton2 a{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+/*--BODY--*/

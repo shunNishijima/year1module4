@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    min-height: 100vh;
+    margin-bottom: 100px;
+}
+
+#websiteBar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    padding: 0 !important;
+}
+
+.navbar-brand img{
+    height: 60px;
+    padding-left: 10px;
+}
+
+.navbar-nav li{
+    padding: 0 10px;
+
+}
+
+.navbar-nav li a{
+    color: white !important;
+    font-weight: normal;
+
+}
+
+#highlightText{
+    color: deepskyblue !important;
+}
+
+#highlightText2{
+    color: deepskyblue !important;
+}
+
+.navbar-toggler{
+    outline: none !important;
+}
+
+
+
+/*--------------DROPDOWN MENU--------*/
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+.dropdown-menu a[href="partCrazy88.html"]{
+    color: darkblue !important;
+}
+
+.dropdown-menu a[href="partChallenge.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="partPuzzle.html"]{
+    color: darkblue !important;
+}
+
+
+/* main */
+.main {
+    background: white;
+    color: darkblue;
+}
+.main h1{
+    text-align: left;
+    padding: 5px 0px 50px 0px;
+}
+.main table{
+    text-align: center;
+    padding: 5px 0px 50px 0px;
+    width: 100%;
+}
+
+/*-------------FOOTER PART-----------------*/
+
+#footer{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100vw;
+}
+
+.logoutbutton2 {
+    background-color: darkblue;
+    border-color: white;
+    border-radius: 15px;
+    float: right;
+
+
+}
+.logoutbutton2 a{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+
+
+table {
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+    text-align: left;
+    vertical-align: center;
+}
+
+th, td {
+    padding: 8px;
+}
+
+th {
+    background-color: #33679e;
+    color: white;
+}
+.titleTable {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+/*#finished{*/
+/*    margin-bottom: 200px;*/
+/*}*/

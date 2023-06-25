@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Challenge</title>
+    <link rel="stylesheet" href="partChallenge.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+</head>
+
+
+<section id="websiteBar">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="inter-actief-logo-onder-wit.png"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="ms-auto"></div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homescreenforParticipants.html" >HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a id="highlightText2" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            PLAY
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="partCrazy88.html">Crazy 88</a>
+                            <li><a class="dropdown-item" id="highlightText" href="partChallenge.html">Challenges</a>
+                            <li><a class="dropdown-item" href="partPuzzle.html">Puzzles</a>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team.html">TEAM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="scoreboard.html">SCOREBOARD</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">GALLERY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">CONTACT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<!------------BACK END STUFF-------------->
+
+<script>
+    function submitChallenge(button){
+        var challengeName = '';
+
+        var row = button.closest('tr')
+        if (row){
+            var columns = row.getElementsByTagName('td');
+            var columnIndex = 0;
+            if (columns.length > columnIndex){
+                challengeName = columns[columnIndex].textContent;
+            }
+        }
+
+        console.log("Challenge Name Sent to Submission page: ", challengeName);
+        var encoded = encodeURIComponent(challengeName);
+        window.location.href = "partSubmission.html?name=" + encoded;
+    }
+
+    function loadUnfinishedChallenges(){
+        fetch("http://localhost:8080/InterActiefProject/api/challenges/unfinished/" + sessionStorage.getItem("sessionKey")).then(result => result.json()).then(challenges => {
+
+
+            let tableContent = "<table id= \"unfinishedtable\" class=\"table table-striped\" style=\"width:80%\"><tr><th>ID</th><th>NAME</th><th>FILE</th><th>SCORE</th><th>SUBMIT</th></tr>";
+            for (const challenge of challenges){
+                tableContent += "<tr><td>" + challenge.challenge_id + "</td><td>"
+                    + challenge.name + "</td> " +
+                    "<td><button class='btn btn-primary' data-bs-toggle=\"modal\" data-bs-target=\"#staticBackdrop\" onclick='openFile(" + '"' +challenge.file + '"' +  ")'>open</button></td> " +
+                    " <td> " + challenge.score + "</td> <td> <button class='btn btn-primary' onclick='submitChallenge(this)'> upload </button> </td></tr>"
+            }
+            tableContent += "</table>"
+            document.getElementById("unfinishedChallenges").innerHTML = tableContent;
+
+
+        })
+
+    }
+
+    function loadFinishedChallenges(){
+        let url = "http://localhost:8080/InterActiefProject/api/submissionForChallenges/challenge/" + sessionStorage.getItem("sessionKey");
+        fetch(url).then(result => result.json()).then(challenges => {
+            let tableContent = "<table class=\"table table-striped\" style=\"width:80%\" > <tr><th>ID</th><th>NAME</th><th>FILE</th><th>SCORE</th><th>IS_GRADED</th><th>GRADE</th><th>FEEDBACK</th><th>SUBMISSION</th></tr>";
+            for (const challenge of challenges){
+                let challengeFile = '"' + challenge.c_File + '"';
+                tableContent += "<tr><td>" + challenge.c_Challenge_id + "</td><td>"
+                    + challenge.c_Name + "</td> " +
+                    "<td><button class='btn btn-primary' data-bs-toggle=\"modal\" data-bs-target=\"#staticBackdrop\" onclick='openFile(" + '"' +challenge.c_File + '"' +  ")'>open</button></td>" +
+                    "<td>" + challenge.c_Score + "</td> <td>" + challenge.s_Is_graded +"</td><td>" + challenge.s_Score +
+                    "</td><td>" + challenge.s_Feedback +
+                    "</td><td><button class='btn btn-primary' data-bs-toggle=\"modal\" data-bs-target=\"#staticBackdrop\" onclick='openFile(" + '"' + challenge.s_File + '"' + ")'>open</button> </td></tr>"
+            }
+            tableContent += "</table>"
+            document.getElementById("finishedChallenges").innerHTML = tableContent;
+        })
+
+
+    }
+
+    function openFile(path){
+        fetch("http://localhost:8080/InterActiefProject/api/challenges/file",{
+            method: "put",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: path
+        }).then(res => res.blob())
+            .then(data => {
+                let dataPath = URL.createObjectURL(data);
+                let filePlace = document.getElementById("filePlace");
+                filePlace.innerHTML = "<img src='" + dataPath + "' width='400'>"
+            })
+    }
+
+    function loadChallenges() {
+        loadFinishedChallenges();
+        loadUnfinishedChallenges();
+    }
+</script>
+
+
+<!------------------------------------->
+
+<body onload="loadChallenges()">
+
+<h1 class="title">CHALLENGES</h1>
+<div>
+    <h3 style="text-align: center">Unfinished Challenges</h3>
+    <div id = "unfinishedChallenges">
+    </div>
+</div>
+
+<div>
+    <h3 style="text-align: center">Finished Challenges</h3>
+    <div id = "finishedChallenges">
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-dialog-centered">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel1">IMAGE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 ml-auto">
+                            <div id="filePlace">
+                                <!--                           <img src="car.jpg" width="400">-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section id="footer">
+
+    <footer class="bg-light text-center text-lg-start" style="color: white">
+        <div class="logoutbutton">
+            <div class="text-center p-3" style="background-image: linear-gradient(to right, darkblue, mediumblue);">
+                Inter-Actief: RIAlly 2023
+
+                <button  class="logoutbutton2"> <a href="../index.html">  LOG OUT </a> </button>
+
+            </div>
+        </div>
+    </footer>
+
+
+
+</section>
+
+
+</body>
+</html>

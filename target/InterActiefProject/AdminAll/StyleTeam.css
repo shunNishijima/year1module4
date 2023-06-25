@@ -1,0 +1,181 @@
+/*apply everything*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*--Head--*/
+/*-BANNER PART-*/
+#websiteBar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    padding: 0 !important;
+}
+.navbar-brand img{
+    height: 60px;
+    padding-left: 10px;
+}
+.navbar-nav li{
+    padding: 0 10px;
+}
+.navbar-nav li a{
+    color: white !important;
+    font-weight: normal;
+}
+#highlightText{
+    color: deepskyblue !important;
+}
+.navbar-toggler{
+    outline: none !important;
+}
+.header-title{
+    color: white;
+}
+
+/*DROPDOWN MENU*/
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+.dropdown-menu a[href="adminCrazy.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="adminChallenge.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="adminPuzzle.html"]{
+    color: darkblue !important;
+}
+
+
+/*DROPDOWN MENU SUBMISSION*/
+.dropdown-menu a[href="ungradedSubmissions.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="gradedSubmissions.html"]{
+    color: darkblue !important;
+}
+
+
+/*--Head--*/
+
+/*--BODY--*/
+body{
+    font-family: 'Dosis', sans-serif;
+}
+main{
+  min-height: 120vh;
+  margin-left: 100px;
+  width: 80vw;
+}
+.title-promo{
+    margin-top: 200px;
+}
+#TeamManagement {
+    width: 80vw;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.edit {
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: black;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.edit:hover {
+    color: grey;
+}
+
+.wrapper {
+    position: relative;
+    height: 100%;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+}
+
+.collapsible {
+    background-color: #063d78;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    width: 80vw;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border: 1px solid black;
+}
+
+.active, .collapsible:hover {
+    background-color: #063d78;
+}
+
+.active {
+    border-bottom: none;
+}
+.content {
+    display: none;
+    width: 80vw;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.content table {
+    width: 80vw;
+    border-collapse: collapse;
+}
+
+.content table, th, td {
+    border: 1px solid black;
+    text-align: left;
+    vertical-align: center;
+}
+
+.content th, td {
+    padding: 10px;
+}
+
+.content th {
+    background-color: #33679e;
+    color: white;
+}
+
+.content tr:hover {
+    background-color: lightgrey;
+}
+
+
+
+/*--FOOTER--*/
+#footer{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    z-index: 2;
+    width: 100vw;
+}
+.logoutbutton2 {
+    background-color: darkblue;
+    border-color: white;
+    border-radius: 15px;
+    float: right;
+}
+.logoutbutton2 a{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+/*--BODY--*/
+
+.btn-danger{
+    display: flex;
+}

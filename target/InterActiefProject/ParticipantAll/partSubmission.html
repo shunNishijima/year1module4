@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submission</title>
+    <link rel="stylesheet" href="partSubmission.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+</head>
+
+
+<section id="websiteBar">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="inter-actief-logo-onder-wit.png"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="ms-auto"></div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homescreenforParticipants.html" >HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            PLAY
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="partCrazy88.html">Crazy 88</a>
+                            <li><a class="dropdown-item" href="partChallenge.html">Challenges</a>
+                            <li><a class="dropdown-item" href="partPuzzle.html">Puzzles</a>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team.html">TEAM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="scoreboard.html">SCOREBOARD</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="highlightText" href="gallery.html">GALLERY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">CONTACT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+</section>
+
+
+<!------------BACK END STUFF----------->
+
+<script>
+    window.onload = function (){
+        var urlParameter = new URLSearchParams(window.location.search);
+        var name = urlParameter.get('name');
+        console.log(name);
+
+        document.getElementById('Name').innerHTML = name   ;
+
+    }
+
+    function submitForm() {
+
+        challengeName = document.getElementById('Name').innerText;
+        var answerFileInput = document.querySelector('input[name="answerFile"]');
+        var answerFile = answerFileInput.files[0];
+        fileName = answerFile.name;
+        path = "C:/Users/Niek-/Desktop/Module2/integration_Project_Java-65/mod4projec/Resources/challenges/uploaded/" + fileName
+        fetch('http://localhost:8080/InterActiefProject/api/submissions',
+            {
+            method: 'POST',
+                headers: {
+                'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({submission_id: "0", file: path, is_graded: false, score: 0, feedback: "", team: "", handed_in_by: sessionStorage.getItem("sessionKey"), graded_by: "", challenge: challengeName})
+            }).then(response => {
+                if(response.ok){
+                    sendFile(answerFileInput);
+                }
+                else {
+                    console.error("Failed to submit: ", response.statusText)
+                }
+        })
+            .catch(error =>{
+            console.error("Error: ", error);
+        });
+
+        function sendFile(file){
+            const formData = new FormData();
+            formData.append("file", file.files[0]);
+            fetch("http://localhost:8080/InterActiefProject/api/challenges/file",{
+                method: "post",
+                body: formData
+            }).then(result => {
+                window.location.href = 'partSubmitted.html';
+            });
+
+        }
+    }
+
+    function cancelForm() {
+        window.location.href = 'homescreenforParticipants.html';
+    }
+</script>
+
+<!------------------------>
+
+
+<body>
+<div class="logo">
+    <div class="logo2">
+        <img id='logo' src="inter-actief-logo-onder-wit.png" alt="InterActief" width="65">
+        <h1 class="title"> SUBMISSION </h1>
+        <ul>
+
+        </ul>
+    </div>
+</div>
+
+<div class="main" >
+    <h1 class="test">Submit here</h1>
+    <div class = "submit">
+        <p class="test">Name:  <p class="test1" type="text" id = "Name" required></p>
+        <p class="test">Answer(file) <input type="file" name="answerFile"></p>
+        <p class="test">
+            <button class="btn btn-danger" onclick="cancelForm(this)">cancel</button>
+            <button class="btn btn-success" onclick="submitForm(this)">Submit</button>
+        </p>
+
+    </div>
+</div>
+
+<section id="footer">
+
+    <footer class="bg-light text-center text-lg-start" style="color: white">
+        <div class="logoutbutton">
+            <div class="text-center p-3" style="background-image: linear-gradient(to right, darkblue, mediumblue);">
+                Inter-Actief: RIAlly 2023
+
+                <button  class="logoutbutton2"> <a href="../index.html">  LOG OUT </a> </button>
+
+            </div>
+        </div>
+    </footer>
+
+
+
+</section>
+
+
+</body>
+</html>

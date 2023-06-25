@@ -1,0 +1,189 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgb(70,86,252);
+    background: radial-gradient(circle, rgba(70,86,252,1) 0%, rgba(63,158,251,1) 100%);
+}
+
+
+.wrapper {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    position: relative;
+    width: 600px;
+    height: 850px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: black;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid black;
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: darkgrey;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top:-5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    line-height: 57px;
+}
+.checkBox {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid black;
+    padding-bottom: 60px;
+    margin: 30px 0;
+}
+
+.checkBox #iconTeam {
+    position: absolute;
+    right: 8px;
+    line-height: 20px;
+}
+
+.checkBox #iconCar {
+    position: absolute;
+    right: 8px;
+    line-height: 57px;
+}
+
+.checkBox #haveCarText {
+    position: absolute;
+    left: 5px;
+    font-weight: 500;
+    font-size: 1em;
+    color: black;
+}
+
+.checkBox #JoinTeamText {
+    position: absolute;
+    left: 5px;
+    font-weight: 500;
+    font-size: 1em;
+    color: black;
+}
+
+.checkBox .yesNo {
+    position: absolute;
+    top: 30px;
+    font-size: 1em;
+    font-weight: 500;
+}
+.checkBox .yesNo label{
+    margin-right: 60px;
+    margin-left: 5px;
+}
+
+.checkBox .yesNo label input{
+    accent-color: black;
+    margin-right: 5px;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: rgb(63, 158, 251);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.popup {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+
+
+

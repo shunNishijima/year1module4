@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Head-->
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Crazy88 Page</title>
+    <link rel="stylesheet" href="styleCrazy.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+</head>
+
+<!--header-->
+<section id="websiteBar">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: relative">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="adminHome.html"><img src="inter-actief-logo-onder-wit.png"></a>
+            <h1 class="header-title"> RIAlly 2023</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="ms-auto"></div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="adminHome.html" >HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="highlightText" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            PLAY
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="adminCrazy.html">Crazy 88</a>
+                            <li><a class="dropdown-item" href="adminChallenge.html">Challenges</a>
+                            <li><a class="dropdown-item text-darkblue" href="adminPuzzle.html">Puzzles</a>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="adminTeam.html">TEAM</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            SUBMISSION
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item"  href="ungradedSubmissions.html">Ungraded Submission</a>
+                            <li><a class="dropdown-item" href="gradedSubmissions.html">Graded Submission</a>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="adminScoreboard.html">ScoreBoard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<!--body-->
+<body onload="loadCrazy88()">
+<div class="container" style="position: relative;">
+<!-- Background image z=1 -->
+    <div class="bg-image d-flex justify-content-center align-items-center"
+         style="
+            background-image: url('inter-actief-logo-onder.png');
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: 86%;
+            background-position-x: 100px;
+            background-position-y: -60px;
+            filter: opacity(5%);
+            z-index: 1;
+            position: relative;">
+    </div>
+
+<!--Whole contents z=2-->
+    <div class="banner-container"
+         style="position: absolute; margin-bottom: 200px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 2;";>
+        <!-------------BANNER SECTION-------------->
+        <section id="banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="title-promo">Admin Crazy88 page</p>
+                        <p>Here, You can see the list of Crazy88 which is made before.
+                            You can freely edit and delete of them.
+                            And surely you can add more crazy things.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="table">
+        <div id="tableCrazy">
+            <h2>All Crazy88: This is list from database of Crazy88s</h2>
+            <table class="table table-hover table-info" id="Crazy88Table">
+                <thead><tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Detail</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr></thead>
+                <tbody id="challengeTableBody"><tr>
+                    <th scope="row">1</th>
+                    <td><a href="/somePDF">details</a></td>
+                    <td><a href="adminAddCrazy.html" class="btn btn-outline-primary" data-mdb-ripple-color="dark" onclick="">Edit</a></td>
+                    <td><button class="btn btn-outline-dark" data-mdb-ripple-color="dark" >DELETE</button></td>
+                </tr></tbody>
+            </table>
+        </div>
+        </section>
+        <section id="button">
+            <div id="add button">
+                <a href="adminAddCrazy.html" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onclick="addCrazy(this)">add new Crazy</a>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+<!-------------FOOTER SECTION-------------->
+<section id="footer">
+<footer class="bg-light text-center text-lg-start" style="position: relative; color: white;">
+    <div class="logoutbutton">
+        <div class="text-center p-3" style="background-image: linear-gradient(to right, darkblue, mediumblue);">
+            Inter-Actief: RIAlly 2023
+            <button  class="logoutbutton2"> <a href="..//index.html">  LOG OUT </a> </button>
+        </div>
+    </div>
+</footer>
+</section>
+</html>
+<!--script-->
+<script>
+    function editCrazy88(id) {
+        // Redirect to the edit puzzle page with the puzzle ID
+        window.location.href = `adminEditPuzzle.html?id=${id}`;
+    }
+    function deleteCrazy88(id) {
+        if (confirm("Are you sure you want to delete this puzzle?")) {
+            // Perform an AJAX request to delete the puzzle with the given ID
+            fetch(`/deletePuzzle?id=${id}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Puzzle deleted successfully, reload the page or update the UI
+                        location.reload();
+                    } else {
+                        // Handle error response
+                        console.log('Error deleting puzzle');
+                    }
+                })
+                .catch(error => {
+                    console.log('Error:', error);
+                });
+        }
+    }
+
+    function loadCrazy88(){
+        fetch("http://localhost:8080/InterActiefProject/api/crazy88").then(result => result.json()).then(challenges => {
+
+
+            let tableContent = "<thead><tr><th>ID</th><th>NAME</th><th>DESCRIPTION</th><th></th><th></th></tr></thead>";
+            for (const challenge of challenges){
+                tableContent += "<tbody><tr><td>" + challenge.challenge_id + "</td><td>" +challenge.name + "</td><td>" + challenge.file +
+                    "</td><td><a href=\"adminAddCrazy.html\" class=\"btn btn-outline-primary\" data-mdb-ripple-color=\"dark\" onclick='editCrazy88(this)'>EDIT</a></td>" +
+                    "<td><button class=\"btn btn-outline-dark\" data-mdb-ripple-color=\"dark\" onclick='deleteCrazy88(this)'>DELETE</button></td></tr></tbody>"
+            }
+            document.getElementById("Crazy88Table").innerHTML = tableContent;
+        })
+
+    }
+</script>

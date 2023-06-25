@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Dosis', sans-serif;
+}
+
+#websiteBar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    padding: 0 !important;
+}
+
+.navbar-brand img{
+    height: 60px;
+    padding-left: 10px;
+}
+
+.navbar-nav li{
+    padding: 0 10px;
+
+}
+
+.navbar-nav li a{
+    color: white !important;
+    font-weight: normal;
+
+}
+
+#highlightText{
+    color: deepskyblue !important;
+}
+
+.navbar-toggler{
+    outline: none !important;
+}
+
+
+
+
+
+/*--------------banner------*/
+
+#banner{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+    color: white;
+    padding-top: 5%;
+}
+
+.promo-title{
+    font-size: 40px;
+    font-weight: 600;
+    padding-top: 100px;
+}
+
+#banner .img-fluid{
+    max-width: 100%;
+    height: auto;
+    max-height: 325px;
+}
+
+.bottom-img{
+    width: 100%;
+}
+
+
+
+/*---------------services------*/
+
+#services{
+    padding: 80px 0;
+}
+
+table {
+    width: 100px;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+    text-align: left;
+    vertical-align: center;
+}
+
+th, td {
+    padding: 8px;
+}
+
+th {
+    background-color: #33679e;
+    color: white;
+}
+
+.services{
+    padding: 20px;
+    margin-left: 120px;
+}
+
+.service-img{
+    margin-top: 20px;
+    width: 300px;
+}
+
+
+
+
+
+/*--------------DROPDOWN MENU--------*/
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+.dropdown-menu a[href="partCrazy88.html"]{
+    color: darkblue !important;
+}
+
+.dropdown-menu a[href="partChallenge.html"]{
+    color: darkblue !important;
+}
+.dropdown-menu a[href="partPuzzle.html"]{
+    color: darkblue !important;
+}
+
+
+/*-------------FOOTER PART-----------------*/
+
+#footer{
+    background-image: linear-gradient(to right, darkblue, mediumblue);
+
+
+}
+
+.logoutbutton2 {
+    background-color: darkblue;
+    border-color: white;
+    border-radius: 15px;
+    float: right;
+
+
+}
+.logoutbutton2 a{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+

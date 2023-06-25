@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Team</title>
+  <link rel="stylesheet" href="styleTeam.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+</head>
+
+
+<!---------BACK END STUFF--------->
+
+<script>
+
+  function confirmRemove(callback) {
+    return confirm("Are you sure you want to remove this person?");
+  }
+
+
+
+  function loadTables(){
+    fetch("http://localhost:8080/InterActiefProject/api/teamCaptain/" + sessionStorage.getItem("sessionKey") + "/members").
+            then(result => result.json()).
+            then(team => {
+              let teamname = ""
+              let index = 0;
+              let htmlString = "<table class=\"table table-striped\" style='width: 80%' '>" +
+                      "      <tr>" +
+                      "        <b><th>Name</th> <th>Phone Number</th> <th>Email</th> <th>Car</th> <th>Allergies</th> <th>Remove</th></b>" +
+                      "      </tr>";
+                      for (const person of team) {
+                        teamname = person.team
+                        document.getElementById("teamName").innerText = teamname;
+                        let id = "removeButton" + index;
+                        htmlString += " <tr>" +
+                        "        <td> "+ person.name +" </td> <td>"+ person.mobile_number +"</td> <td>"+ person.email +"</td> <td>"+ person.have_car +"</td> <td>"+ person.allergies +"</td> <td><button class=\"btn btn-danger\" onclick='removePerson(this)'>Remove</button></td>" +
+                        "      </tr>"
+                        index++;
+                      }
+
+              document.getElementById("teamTable").innerHTML = htmlString;
+              var url = "http://localhost:8080/InterActiefProject/Forms/JoinTeamForm.html?team=" + teamname
+              document.getElementById("link").innerHTML = url;
+
+    })
+
+  }
+
+  function removePerson(button){
+    let row = button.parentNode.parentNode;
+    let name = row.cells[0].innerText;
+    let mobiel_number = row.cells[1].innerText;
+    let email = row.cells[2].innerText;
+    let car = row.cells[3].innerText;
+    let allergies = row.cells[3].innerText;
+    if (confirmRemove()){
+      deleteRequest(email);
+      row.parentNode.removeChild(row);
+    }
+
+  }
+
+  function deleteRequest(email){
+    let jsonData = createData(email)
+    fetch("http://localhost:8080/InterActiefProject/api/people/" + email, {
+      method: 'DELETE',
+      headers: {
+          'Content-type': 'application/json'
+      },
+      body: jsonData,
+    }).then(function (response){
+
+
+    })
+  }
+
+  function createData(name, email){
+    let data = '{"name": ' + name + ', "email": ' + email + '}'
+    return data;
+  }
+
+  function copyLink(){
+    let copyText = document.getElementById("link").innerText;
+    navigator.clipboard.writeText(copyText);
+    alert("Copied the text: " + copyText)
+  }
+</script>
+
+<!------------------------------>
+
+
+
+
+
+<body onload="loadTables()">
+
+
+<section id="websiteBar">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="inter-actief-logo-onder-wit.png"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="ms-auto"></div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="homescreenforParticipants.html" >HOME</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              PLAY
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="partCrazy88.html">Crazy 88</a>
+              <li><a class="dropdown-item" href="partChallenge.html">Challenges</a>
+              <li><a class="dropdown-item" href="partPuzzle.html">Puzzles</a>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="highlightText" href="team.html">TEAM</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="scoreboard.html">SCOREBOARD</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">GALLERY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">CONTACT</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+</section>
+
+
+<section id="bodypart">
+
+  <div class="top">
+    <h1  id="teamName" class="title"></h1>
+    <p>(only team leader can remove members)</p>
+    <p>Your team consists of the following people:</p>
+  </div>
+  <div id="teamTable">
+    <table>
+    </table>
+  </div>
+  <div id="joinlink">
+    <p id="textbelow">Send the following link to your friends to join:</p>
+    <p id="link"></p>
+    <button class="btn btn-outline-primary" onclick="copyLink()">copy link</button>
+
+  </div>
+
+</section>
+
+
+  <section id="footer">
+
+    <footer class="bg-light text-center text-lg-start" style="color: white">
+      <div class="logoutbutton">
+        <div class="text-center p-3" style="background-image: linear-gradient(to right, darkblue, mediumblue);">
+          Inter-Actief: RIAlly 2023
+
+          <button  class="logoutbutton2"> <a href="../index.html">  LOG OUT </a> </button>
+
+        </div>
+      </div>
+    </footer>
+
+
+
+  </section>
+
+</body>
+</html>
